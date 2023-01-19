@@ -20,6 +20,8 @@
 #include <malloc.h>
 #include <u-boot/crc.h>
 
+#define LOG_DEBUG
+
 DECLARE_GLOBAL_DATA_PTR;
 
 /************************************************************************
@@ -113,6 +115,9 @@ int env_set_default_vars(int nvars, char * const vars[], int flags)
 int env_import(const char *buf, int check, int flags)
 {
 	env_t *ep = (env_t *)buf;
+
+	pr_info("in %s, check = %d, ENV_HEADER_SIZE = %d, ENV_SIZE = %d\n", __func__, check,
+	      ENV_HEADER_SIZE, ENV_SIZE );
 
 	if (check) {
 		uint32_t crc;
